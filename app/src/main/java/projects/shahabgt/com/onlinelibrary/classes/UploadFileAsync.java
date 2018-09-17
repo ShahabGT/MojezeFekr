@@ -158,7 +158,7 @@ public class UploadFileAsync extends AsyncTask<String, Void, String> {
             }
         }){
             @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
+            protected Map<String, String> getParams() {
                 Map<String,String> params = new HashMap<>();
                 params.put("subset",subset);
                 params.put("filename",filename);

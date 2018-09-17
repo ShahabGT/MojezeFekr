@@ -56,7 +56,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
         holder.message.setText(messagesModelModel.get_message());
         holder.sender.setText("فرستنده: "+messagesModelModel.get_sender());
         DateParser dp = new DateParser(messagesModelModel.get_date());
-        DateModel dm = dp.dateAndTimeParser();
+        DateModel dm = DateParser.dateAndTimeParser();
         String temp = dm.toString();
         holder.date.setText(temp);
 

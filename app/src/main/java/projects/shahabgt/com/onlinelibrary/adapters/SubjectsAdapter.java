@@ -54,8 +54,8 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
 
     public SubjectsAdapter(Activity activity, Context ctx, ArrayList<SubjectsModel> arrayList){
         this.arrayList=arrayList;
-        this.ctx=ctx;
-        this.activity =activity;
+        SubjectsAdapter.ctx =ctx;
+        SubjectsAdapter.activity =activity;
         sp =activity.getSharedPreferences("logininfo",Context.MODE_PRIVATE);
 
     }
