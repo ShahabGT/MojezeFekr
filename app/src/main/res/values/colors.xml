@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#f99e45</color>
+    <color name="colorPrimaryDark">#f98311</color>
+    <color name="colorAccent">#ffd180</color>
+
+    <color name="white">#ffffff</color>
+    <color name="gray">#dfe0da</color>
+    <color name="darkgray">#968571</color>
+    <color name="black">#000000</color>
+    <color name="green">#26A69A</color>
+
+    <color name="mdtp_accent_color">#f99e45</color>
+    <color name="mdtp_accent_color_dark">#f98311</color>
+</resources>

@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".SubsetActivity">
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/subset_relativetop"
+            android:background="@drawable/header"
+            android:layout_height="wrap_content"
+            >
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="درس ها"
+                android:textColor="@color/green"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                />
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_back"
+                android:text="exit"
+                android:id="@+id/subset_back"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_below="@+id/toolbar_container"
+        android:layout_above="@+id/viewnohe_player"
+        android:padding="5dp"
+        android:id="@+id/subset_coor"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:id="@+id/subset_recylcer"
+            android:layout_height="match_parent"/>
+    </android.support.design.widget.CoordinatorLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/viewnohe_player"
+        android:layout_alignParentBottom="true"
+        android:orientation="vertical"
+        android:background="@color/white"
+        android:gravity="center_vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="50dp">
+
+            <ImageView
+                android:id="@+id/nohe_player_play"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:src="@mipmap/ic_play" />
+
+            <ImageView
+                android:id="@+id/nohe_player_pause"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="6"
+                android:src="@mipmap/ic_pause"
+                android:visibility="gone" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="0.8"
+                android:paddingBottom="5dp"
+                android:paddingRight="10dp"
+                android:paddingTop="5dp" >
+
+                <SeekBar
+                    android:id="@+id/nohe_player_seekbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"/>
+            </FrameLayout>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="horizontal"
+            android:gravity="right"
+            android:layout_height="wrap_content">
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/nohe_player_runtime"
+                android:text="00:00"/>
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:layout_marginRight="5dp"
+                android:text="/"/>
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:id="@+id/nohe_player_totaltime"
+                android:layout_height="wrap_content"
+                android:text="00:00"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/subset_loadinglayout"
+        android:gravity="center"
+        android:layout_below="@+id/toolbar_container"
+        android:background="@color/white"
+        android:visibility="gone"
+        android:layout_height="match_parent">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="50dp"
+            android:id="@+id/subset_loading"
+            android:layout_height="50dp" />
+    </LinearLayout>
+
+</RelativeLayout>

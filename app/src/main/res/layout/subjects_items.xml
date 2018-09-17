@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_marginBottom="5dp"
+        app:cardElevation="5dp"
+        android:foreground="?attr/selectableItemBackground"
+        app:cardCornerRadius="5dp"
+        android:focusable="true"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:background="@color/green"
+            android:layout_height="wrap_content">
+            <com.facebook.drawee.view.SimpleDraweeView
+                android:layout_width="80dp"
+                android:layout_margin="10dp"
+                android:id="@+id/subjects_items_pic"
+                android:layout_alignParentRight="true"
+                app:roundAsCircle="true"
+                android:layout_height="80dp" />
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_centerVertical="true"
+                android:id="@+id/subjects_items_name"
+                android:text="asdasd"
+                android:paddingRight="5dp"
+               android:layout_toLeftOf="@+id/subjects_items_pic"
+                android:layout_height="wrap_content"
+                android:textColor="@color/white"
+                style="@style/Base.TextAppearance.AppCompat.Medium" />
+        </RelativeLayout>
+        <LinearLayout
+        android:layout_width="match_parent"
+        android:background="@color/white"
+       android:orientation="horizontal"
+                 android:weightSum="2"
+        android:layout_height="wrap_content">
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="قیمت:"
+                    android:id="@+id/subjects_items_t1"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkgray"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    style="@style/Base.TextAppearance.AppCompat.Body2" />
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/subjects_items_price"
+                    android:layout_toLeftOf="@+id/subjects_items_t1"
+                    android:text="قیمت"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_dark"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    style="@style/Base.TextAppearance.AppCompat.Body2" />
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:visibility="gone"
+                    android:id="@+id/subjects_items_price2"
+                    android:layout_height="wrap_content" />
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:id="@+id/subjects_items_price_tag"
+                    android:layout_toLeftOf="@+id/subjects_items_price"
+                    android:text="ریال"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_dark"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    style="@style/Base.TextAppearance.AppCompat.Body2" />
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentRight="true"
+                    android:text="تعداد فایل ها:"
+                    android:id="@+id/subjects_items_t2"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/darkgray"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    style="@style/Base.TextAppearance.AppCompat.Body2" />
+                <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                    android:layout_width="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toLeftOf="@+id/subjects_items_t2"
+                    android:id="@+id/subjects_items_count"
+                    android:text="تعداد فایل :"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/primary_dark"
+                    android:padding="5dp"
+                    android:textStyle="bold"
+                    style="@style/Base.TextAppearance.AppCompat.Body2" />
+
+            </RelativeLayout>
+
+
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:id="@+id/subjects_items_id"
+                android:visibility="gone"
+                android:layout_height="wrap_content" />
+
+    </LinearLayout>
+
+            <Button
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_width="wrap_content"
+                android:layout_gravity="center"
+                android:paddingLeft="30dp"
+                android:paddingRight="30dp"
+                android:id="@+id/subjects_items_delete"
+                android:text="حذف دوره"
+                android:textColor="@color/white"
+                android:background="@drawable/shape3x"
+                android:layout_height="wrap_content" />
+        </LinearLayout>
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>

@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".SubjectsActivity">
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/messages_relativetop"
+            android:background="@drawable/header"
+            android:layout_height="wrap_content"
+            >
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="دوره ها"
+                android:textColor="@color/green"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                />
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_back"
+                android:text="exit"
+                android:id="@+id/subjects_back"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:id="@+id/subjects_loadinglayout"
+        android:gravity="center"
+        android:visibility="visible"
+        android:layout_height="match_parent">
+        <com.facebook.drawee.view.SimpleDraweeView
+            android:layout_width="50dp"
+            android:id="@+id/subjects_loading"
+            android:layout_height="50dp" />
+    </LinearLayout>
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:padding="5dp"
+        android:id="@+id/subjects_coor"
+        android:layout_height="match_parent">
+        <android.support.v7.widget.RecyclerView
+            android:background="#ffffff"
+            android:layout_width="match_parent"
+            android:id="@+id/subjects_recylcer"
+            android:layout_height="match_parent"/>
+    </android.support.design.widget.CoordinatorLayout>
+
+
+</LinearLayout>

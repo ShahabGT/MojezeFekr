@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".StatsActivity">
+    <FrameLayout
+        android:id="@+id/toolbar_container"
+        android:layout_width="match_parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:id="@+id/stats_relativetop"
+            android:background="@drawable/header"
+            android:layout_height="wrap_content"
+            >
+            <projects.shahabgt.com.onlinelibrary.style.FontTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="آمار"
+                android:textColor="@color/green"
+                android:layout_centerVertical="true"
+                android:layout_centerHorizontal="true"
+                style="@style/Base.TextAppearance.AppCompat.Large"
+                />
+            <ImageView
+                android:layout_width="45dp"
+                android:layout_height="45dp"
+                android:layout_gravity="right"
+                android:layout_marginRight="5dp"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:src="@mipmap/ic_back"
+                android:text="exit"
+                android:id="@+id/stats_back"/>
+
+        </RelativeLayout>
+    </FrameLayout>
+<ScrollView
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+<LinearLayout
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent">
+    <Button
+        android:layout_width="match_parent"
+        android:textColor="#ffffff"
+        android:id="@+id/stats_yearselector"
+        android:layout_margin="15dp"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Button"
+        android:background="@drawable/shape3"
+        android:text="انتخاب سال"/>
+    <projects.shahabgt.com.onlinelibrary.style.FontTextView
+        android:layout_width="match_parent"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/green"
+        android:id="@+id/stats_countyeartitle"
+        android:textStyle="bold"
+        android:text="تعداد پکیج های فروخته شده در سال"
+        android:layout_height="wrap_content" />
+    <org.eazegraph.lib.charts.BarChart
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/barchart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        app:egFixedBarWidth="true"
+        app:egBarWidth="20dp"
+        app:egLegendHeight="40dp"/>
+    <projects.shahabgt.com.onlinelibrary.style.FontTextView
+        android:layout_width="match_parent"
+        style="@style/Base.TextAppearance.AppCompat.Large"
+        android:textColor="@color/green"
+        android:text="درآمد کسب شده در هر ماه:"
+        android:layout_height="wrap_content" />
+    <org.eazegraph.lib.charts.PieChart
+
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/piechart"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        android:padding="10dp"
+        app:egFixedBarWidth="true"
+        app:egBarWidth="20dp"
+        app:egLegendHeight="40dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:gravity="right"
+        android:layout_marginTop="15dp"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/stats_totalyearcount"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/primary_dark"
+            android:text="کل بسته های فروخته شده در سال "
+            android:layout_height="wrap_content" />
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:id="@+id/stats_counttotalyeartitle"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/green"
+            android:text="کل بسته های فروخته شده در سال "
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+        android:gravity="right"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/stats_totalyearprice"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/primary_dark"
+            android:text="کل بسته های فروخته شده در سال "
+            android:layout_height="wrap_content" />
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            android:id="@+id/stats_sumtotalyeartitle"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/green"
+            android:text="کل درآمد کسب شده در سال "
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginTop="15dp"
+
+        android:gravity="right"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/stats_totalcount"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/primary_dark"
+            android:text="کل بسته های فروخته شده در سال "
+            android:layout_height="wrap_content" />
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/green"
+            android:text="تعداد کل بسته های فروخته شده تا امروز:"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="horizontal"
+        android:layout_marginBottom="15dp"
+        android:layout_marginTop="15dp"
+        android:gravity="right"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:id="@+id/stats_totalprice"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/primary_dark"
+            android:text="کل بسته های فروخته شده در سال "
+            android:layout_height="wrap_content" />
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="wrap_content"
+            android:paddingLeft="15dp"
+            android:paddingRight="15dp"
+            style="@style/Base.TextAppearance.AppCompat.Small"
+            android:textColor="@color/green"
+            android:text="کل درآمد کسب شده تا امروز"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</LinearLayout>
+</ScrollView>
+
+</LinearLayout>

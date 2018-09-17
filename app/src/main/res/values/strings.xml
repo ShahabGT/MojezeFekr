@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">Mojeze Fekr</string>
+    <string name="crop_image_menu_rotate_right">چرخش</string>
+    <string name="crop_image_menu_crop">ذخیره</string>
+    <string name="sms_api">4658444566534C3264655A70386B3863755443354B2B656B3174704359555379</string>
+    <string name="subject_img_url">http://www.mojezeyefekr.ir/onlinelibrary/subjects/</string>
+    <string name="sms_url">https://api.kavenegar.com/v1/4658444566534C3264655A70386B3863755443354B2B656B3174704359555379/sms/send.json</string>
+    <string name="url">http://www.mojezeyefekr.ir/onlinelibrary/</string>
+    <string name="sounds_url">http://www.mojezeyefekr.ir/onlinelibrary/sounds/</string>
+    <string name="pass">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ 1234567890!@#$%^*()_-,.</string>
+    <string name="email">abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ@1234567890_.-</string>
+    <string name="farsi">ا ب پ ت ث ج چ ح خ د ذ ر ز ژ س ش ص ض ط ظ ع غ ف ق ک گ ل م ن و ه ی آ ئ</string>
+    <string name="countyeartitle">"تعداد پکیج های فروخته شده در سال %s :"</string>
+    <string name="counttotalyeartitle">"کل بسته های فروخته شده در سال %s :"</string>
+    <string name="sumtotalyeartitle">"کل درآمد کسب شده در سال %s :"</string>
+</resources>
