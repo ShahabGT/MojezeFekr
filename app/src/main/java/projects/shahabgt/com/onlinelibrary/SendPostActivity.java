@@ -17,6 +17,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.DefaultRetryPolicy;
@@ -43,29 +44,31 @@ import static android.provider.MediaStore.Files.FileColumns.MEDIA_TYPE_VIDEO;
 import static projects.shahabgt.com.onlinelibrary.classes.Network.checknet;
 
 public class SendPostActivity extends AppCompatActivity {
-    static final int gallery =20;
-    static final int camera =50;
-    Bitmap bitmap=null;
-    Uri uri;
-    Uri fileUri;
-    AlertDialog.Builder builder;
-    AlertDialog alertDialog;
-    ImageView image,back;
-    LinearLayout layout;
-    Button add,delete,send;
-    int viewCount=0;
-    ProgressDialog progressDialog;
-    ArrayList<String> array;
-    EditText subjectname,price;
-
-
-
-
+    private static final int gallery =20;
+    private static final int camera =50;
+    private Bitmap bitmap=null;
+    private Uri uri;
+    private Uri fileUri;
+    private AlertDialog.Builder builder;
+    private AlertDialog alertDialog;
+    private ImageView image,back;
+    private LinearLayout layout;
+    private Button add,delete,send;
+    private TextView editText1;
+    private int viewCount=0;
+    private ProgressDialog progressDialog;
+    private ArrayList<String> array;
+    private EditText subjectname,price;
+    private Bundle bundle;
+    private String subjectid;
+    private String where;
+    private TextView title;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_post);
+        title = findViewById(R.id.sendpost_title);
         builder = new AlertDialog.Builder(this);
         add = findViewById(R.id.sendpost_addview);
         add.setOnClickListener(new View.OnClickListener() {
@@ -134,15 +137,15 @@ public class SendPostActivity extends AppCompatActivity {
                     Toast.makeText(SendPostActivity.this,"لطفا فرم را پر کنید!",Toast.LENGTH_LONG).show();
                 }else{
                     builder.setTitle("اطلاع");
-                    builder.setMessage("آیا از صحت اطلاعات دوره تعریف شده اطمینان دارید؟");
-                    builder.setPositiveButton("ارسال دوره", new DialogInterface.OnClickListener() {
+                    builder.setMessage("آیا از صحت اطلاعات دوره اطمینان دارید؟");
+                    builder.setPositiveButton("ارسال", new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             String pic="";
                             if(bitmap!=null) pic = imgToString(bitmap);
                             String res=array.toString();
-                            send(csubject,array,cprice,pic);
+                            send(csubject,array,cprice,pic,subjectid,where);
                             alertDialog.dismiss();
                         }
                     });
@@ -159,6 +162,26 @@ public class SendPostActivity extends AppCompatActivity {
 
             }
         });
+        getData();
+        editText1 = findViewById(R.id.sendpost_editText1);
+        if(where.equals("edit")){
+            editText1.setVisibility(View.VISIBLE);
+        }else {
+            editText1.setVisibility(View.GONE);
+        }
+
+    }
+
+    private void getData(){
+        bundle = getIntent().getExtras();
+        where = bundle.getString("where","");
+        subjectid = bundle.getString("subjectid","");
+        subjectname.setText(bundle.getString("name",""));
+        if(where.equals("edit")) {
+            title.setText("ویرایش دوره");
+            getSubjectData(subjectid);
+        }
+
 
     }
 
@@ -182,6 +205,23 @@ public class SendPostActivity extends AppCompatActivity {
             fontEditText.setLines(1);
             fontEditText.setId(viewCount++);
             fontEditText.setHint("عنوان درس "+viewCount);
+            layout.addView(fontEditText);
+        }
+
+    }
+    private void addView(String text){
+        if(viewCount<16) {
+            layout = findViewById(R.id.sendpost_linear);
+            FontEditText fontEditText = new FontEditText(SendPostActivity.this);
+
+            fontEditText.setLayoutParams(new LinearLayout.LayoutParams(
+                    LinearLayout.LayoutParams.MATCH_PARENT,
+                    LinearLayout.LayoutParams.WRAP_CONTENT));
+            fontEditText.setMaxLines(1);
+            fontEditText.setLines(1);
+            fontEditText.setId(viewCount++);
+            fontEditText.setHint("عنوان درس "+viewCount);
+            fontEditText.setText(text);
             layout.addView(fontEditText);
         }
 
@@ -290,7 +330,7 @@ public class SendPostActivity extends AppCompatActivity {
         return mediaFile;
     }
 
-    private void send(final String subject,final ArrayList<String> subset,final String price, final String pic){
+    private void send(final String subject,final ArrayList<String> subset,final String price, final String pic, final String subjectid,final String where){
         if (checknet(SendPostActivity.this)) {
             progressDialog= new ProgressDialog(SendPostActivity.this);
             progressDialog.setMessage("لطفا منتظر بمانید...");
@@ -304,9 +344,11 @@ public class SendPostActivity extends AppCompatActivity {
                 public void onResponse(String response) {
                     progressDialog.dismiss();
                     if(response.equals("ok")){
-                        Toast.makeText(SendPostActivity.this,"دوره جدید با موفقیت ثبت شد!",Toast.LENGTH_LONG).show();
+                        Toast.makeText(SendPostActivity.this,"دوره با موفقیت ثبت شد!",Toast.LENGTH_LONG).show();
                         Intent intent = new Intent(SendPostActivity.this,SendPost2Activity.class);
                         intent.putExtra("array",array);
+                        intent.putExtra("where",where);
+                        intent.putExtra("subjectid",subjectid);
                         startActivity(intent);
                         SendPostActivity.this.finish();
                     }else{
@@ -325,18 +367,61 @@ public class SendPostActivity extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() {
                     Map<String,String> params = new HashMap<>();
+                    params.put("subjectid",subjectid);
                     params.put("subjectname",subject);
                     params.put("price",price);
                     if(!pic.isEmpty())
                         params.put("image",pic);
-
                     String res = subset.toString();
                     res = res.replace("[", "");
                     res = res.replace("]", "");
                     res = res.replace(",", ":::");
                     params.put("subsetname",res);
-
+                    params.put("subjectid",subjectid);
                     params.put("count",subset.size()+"");
+                    return params;
+                }
+            };
+
+            sendpost.setRetryPolicy(new DefaultRetryPolicy(30000, 1, DefaultRetryPolicy.DEFAULT_BACKOFF_MULT));
+            Mysingleton.getmInstance(SendPostActivity.this).addToRequestque(sendpost);
+        } else {
+            Toast.makeText(SendPostActivity.this, "لطفا اتصال به اینترنت را بررسی کنید!", Toast.LENGTH_LONG).show();
+        }
+    }
+    private void getSubjectData(final String subjectid){
+        if (checknet(SendPostActivity.this)) {
+            progressDialog= new ProgressDialog(SendPostActivity.this);
+            progressDialog.setMessage("لطفا منتظر بمانید...");
+            progressDialog.setIndeterminate(true);
+            progressDialog.setCancelable(false);
+            progressDialog.show();
+            final String url=getResources().getString(R.string.url)+"getsubjectdata.php";
+
+            StringRequest sendpost = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    progressDialog.dismiss();
+                    String[] first=response.split("###");
+                    price.setText(first[0]);
+                    String[] second= first[1].split(":::");
+                    for(int i =0; i<second.length;i++){
+                        addView(second[i]);
+                    }
+
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    progressDialog.dismiss();
+                    Toast.makeText(SendPostActivity.this,"خطا لطفا دوباره امتحان کنید!",Toast.LENGTH_LONG).show();
+                }
+            }){
+
+                @Override
+                protected Map<String, String> getParams() {
+                    Map<String,String> params = new HashMap<>();
+                    params.put("subjectid",subjectid);
                     return params;
                 }
             };

@@ -1,14 +1,17 @@
-package projects.shahabgt.com.onlinelibrary.classes;
+package projects.shahabgt.com.onlinelibrary.Dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.jaredrummler.materialspinner.MaterialSpinner;
 
 import projects.shahabgt.com.onlinelibrary.R;
 
@@ -22,6 +25,7 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
     TextView versionname;
     String versionName="";
     ImageView instagram,telegram,website;
+    SharedPreferences sp;
 
     public CustomDialogClass(Activity a) {
         super(a);
@@ -33,6 +37,7 @@ public class CustomDialogClass extends Dialog implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.customdialog_layout);
+        sp = c.getSharedPreferences("logininfo",0);
         versionname = findViewById(R.id.customdialog_versionname);
         try {
             versionName = c.getPackageManager().getPackageInfo(c.getPackageName(), 0).versionName;

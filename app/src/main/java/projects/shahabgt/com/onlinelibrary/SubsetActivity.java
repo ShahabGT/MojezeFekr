@@ -58,8 +58,7 @@ public class SubsetActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fresco.initialize(SubsetActivity.this);
         setContentView(R.layout.activity_subset);
-        AudioWife audioWife = new AudioWife();
-        back= findViewById(R.id.subset_back);
+        back = findViewById(R.id.subset_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -167,24 +166,28 @@ public class SubsetActivity extends AppCompatActivity {
         }
     }
 
-    public static void play(Activity activity,Uri uri){
-        AudioWife.getInstance().pause();
-        AudioWife.getInstance().release();
-        SeekBar mMediaSeekBar;
-        ImageView mPlayMedia,mPauseMedia;
-        TextView mRunTime,mTotalTime;
-        mPlayMedia = activity.findViewById(R.id.nohe_player_play);
-        mPauseMedia = activity.findViewById(R.id.nohe_player_pause);
-        mMediaSeekBar = activity.findViewById(R.id.nohe_player_seekbar);
-        mRunTime = activity.findViewById(R.id.nohe_player_runtime);
-        mTotalTime = activity.findViewById(R.id.nohe_player_totaltime);
-        AudioWife.getInstance()
-                .init(activity.getApplicationContext(), uri)
-                .setPlayView(mPlayMedia)
-                .setPauseView(mPauseMedia)
-                .setSeekBar(mMediaSeekBar)
-                .setRuntimeView(mRunTime)
-                .setTotalTimeView(mTotalTime)
-                .play();
+    public static void play(Activity activity,Uri uri) {
+        try {
+            AudioWife.getInstance().pause();
+            AudioWife.getInstance().release();
+            SeekBar mMediaSeekBar;
+            ImageView mPlayMedia, mPauseMedia;
+            TextView mRunTime, mTotalTime;
+            mPlayMedia = activity.findViewById(R.id.nohe_player_play);
+            mPauseMedia = activity.findViewById(R.id.nohe_player_pause);
+            mMediaSeekBar = activity.findViewById(R.id.nohe_player_seekbar);
+            mRunTime = activity.findViewById(R.id.nohe_player_runtime);
+            mTotalTime = activity.findViewById(R.id.nohe_player_totaltime);
+            AudioWife.getInstance()
+                    .init(activity.getApplicationContext(), uri)
+                    .setPlayView(mPlayMedia)
+                    .setPauseView(mPauseMedia)
+                    .setSeekBar(mMediaSeekBar)
+                    .setRuntimeView(mRunTime)
+                    .setTotalTimeView(mTotalTime)
+                    .play();
+        }catch (Exception e){
+            Toast.makeText(activity,"لطفا دوباره امتحان کنید",Toast.LENGTH_LONG).show();
+        }
     }
 }

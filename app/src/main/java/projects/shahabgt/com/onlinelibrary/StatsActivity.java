@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -43,6 +44,7 @@ public class StatsActivity extends AppCompatActivity {
     private Button selectyear;
     private BarChart mBarChart;
     private PieChart mPieChart;
+    private ImageView back;
 
     ProgressDialog progressDialog;
 
@@ -50,6 +52,14 @@ public class StatsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_stats);
+
+        back = findViewById(R.id.stats_back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                onBackPressed();
+            }
+        });
 
         yearcount = findViewById(R.id.stats_totalyearcount);
         yearprice = findViewById(R.id.stats_totalyearprice);

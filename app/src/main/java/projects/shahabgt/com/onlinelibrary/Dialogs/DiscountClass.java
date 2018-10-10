@@ -1,4 +1,4 @@
-package projects.shahabgt.com.onlinelibrary.classes;
+package projects.shahabgt.com.onlinelibrary.Dialogs;
 
 import android.app.Activity;
 import android.app.Dialog;
@@ -32,6 +32,7 @@ import java.util.HashMap;
 import java.util.Map;
 import projects.shahabgt.com.onlinelibrary.R;
 import projects.shahabgt.com.onlinelibrary.WebActivity;
+import projects.shahabgt.com.onlinelibrary.classes.Mysingleton;
 
 import static projects.shahabgt.com.onlinelibrary.classes.Network.checknet;
 

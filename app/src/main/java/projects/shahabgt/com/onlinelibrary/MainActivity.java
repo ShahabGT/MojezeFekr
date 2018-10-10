@@ -1,32 +1,21 @@
 package projects.shahabgt.com.onlinelibrary;
 
-import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
-import com.mikepenz.materialdrawer.Drawer;
-import com.mikepenz.materialdrawer.DrawerBuilder;
-import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
-import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
-
-import projects.shahabgt.com.onlinelibrary.classes.CustomDialogClass;
-
-import static projects.shahabgt.com.onlinelibrary.classes.Network.checknet;
+import projects.shahabgt.com.onlinelibrary.Dialogs.CustomDialogClass;
+import projects.shahabgt.com.onlinelibrary.Dialogs.SettingsDialog;
 
 public class MainActivity extends AppCompatActivity {
     boolean doubleBackToExitPressedOnce;
@@ -67,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 startActivity(new Intent(MainActivity.this,SubjectsActivity.class));
+
             }
         });
 
@@ -119,21 +109,25 @@ public class MainActivity extends AppCompatActivity {
            cart.setOnClickListener(new View.OnClickListener() {
                @Override
                public void onClick(View v) {
-                   startActivity(new Intent(MainActivity.this,SendPostActivity.class));
+                   Intent intent = new Intent(MainActivity.this,SendPostActivity.class);
+                   intent.putExtra("where","new");
+                   startActivity(intent);
                }
            });
 
         }else{
-            stats_text.setText("خروج");
+            stats_text.setText("تنظیمات");
             about_text.setText("درباره");
             card_text.setText("خرید های من");
-            stats_img.setImageDrawable(getResources().getDrawable(R.drawable.mexit));
+            stats_img.setImageDrawable(getResources().getDrawable(R.drawable.settings));
             about_img.setImageDrawable(getResources().getDrawable(R.drawable.aboutus));
             card_img.setImageDrawable(getResources().getDrawable(R.drawable.cart));
             stats.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    MainActivity.this.finish();
+                    SettingsDialog cdd = new SettingsDialog(MainActivity.this);
+                    cdd.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                    cdd.show();
                 }
             });
             about.setOnClickListener(new View.OnClickListener() {

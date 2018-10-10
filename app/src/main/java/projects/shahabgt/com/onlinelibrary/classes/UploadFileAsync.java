@@ -32,18 +32,23 @@ public class UploadFileAsync extends AsyncTask<String, Void, String> {
     private String res;
     private String subset;
     private String filename;
+    private String where;
+    private String subjectid;
     public UploadFileAsync(Context context){
         this.context=context;
     }
 
     @Override
     protected String doInBackground(String... params) {
-        subset=params[1];
-        filename=params[2];
+        subset=params[2];
+        filename=params[3];
 
         try {
-            String sourceFileUri = params[0];
-            String upLoadServerUri = context.getString(R.string.url)+"upload.php";
+            where = params[4];
+            subjectid = params[5];
+            String sourceFileUri = params[1];
+            //String upLoadServerUri = context.getString(R.string.url)+"upload.php";
+            String upLoadServerUri = context.getString(R.string.url)+params[0];
             HttpURLConnection conn;
             DataOutputStream dos;
             String lineEnd = "\r\n";
@@ -122,7 +127,10 @@ public class UploadFileAsync extends AsyncTask<String, Void, String> {
     protected void onPostExecute(String result) {
 
         if(result.equals("ok")){
-            rename(subset,filename);
+            if(where.equals("edit"))
+                erename(subset,filename,subjectid);
+            else
+                rename(subset,filename);
         }else {
             Toast.makeText(context,"خطا! لطفا دوباره امتحان کنید",Toast.LENGTH_LONG).show();
         }
@@ -161,6 +169,39 @@ public class UploadFileAsync extends AsyncTask<String, Void, String> {
             protected Map<String, String> getParams() {
                 Map<String,String> params = new HashMap<>();
                 params.put("subset",subset);
+                params.put("filename",filename);
+
+                return params;
+
+            }
+        };
+        Mysingleton.getmInstance(context).addToRequestque(request);
+
+    }
+    private void erename( final String subset, final String filename,final String subjectid){
+        final String url= context.getString(R.string.url)+"erename.php";
+        StringRequest request = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                dialog.dismiss();
+                if(response.equals("ok")){
+                    Toast.makeText(context,"فایل با موفقیت آپلود شد!",Toast.LENGTH_LONG).show();
+                }else {
+                    Toast.makeText(context,"خطا! لطفا دوباره امتحان کنید",Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                dialog.dismiss();
+                Toast.makeText(context,"خطا! لطفا دوباره امتحان کنید",Toast.LENGTH_LONG).show();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String,String> params = new HashMap<>();
+                params.put("subset",subset);
+                params.put("s_id",subjectid);
                 params.put("filename",filename);
 
                 return params;

@@ -97,7 +97,7 @@ public class MessagesAdapter extends RecyclerView.Adapter<MessagesAdapter.Messag
                     new MaterialDialog.Builder(act)
                             .title("اطلاع")
                             .content("پیام حذف شود؟")
-                            .positiveText("حدف")
+                            .positiveText("حذف")
                             .negativeText("بستن")
                             .positiveColor(Color.parseColor("#4caf50"))
                             .onPositive(new MaterialDialog.SingleButtonCallback() {

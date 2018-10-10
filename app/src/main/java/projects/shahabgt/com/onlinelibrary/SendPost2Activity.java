@@ -39,17 +39,21 @@ import static projects.shahabgt.com.onlinelibrary.classes.Network.checknet;
 
 public class SendPost2Activity extends AppCompatActivity {
 
-    Uri uri;
-    static final int file =70;
-    LinearLayout layout;
+    private Uri uri;
+    private static final int file =70;
+    private LinearLayout layout;
     int viewCount=1;
-    Bundle bundle;
-    ArrayList<String> array;
-    Button upload;
-    String which;
-    AlertDialog.Builder builder;
-    AlertDialog dialog;
-    ProgressDialog progressDialog;
+    private Bundle bundle;
+    private ArrayList<String> array;
+    private Button upload;
+    private String which;
+    private AlertDialog.Builder builder;
+    private AlertDialog dialog;
+    private ProgressDialog progressDialog;
+    private String where;
+    private String url;
+    private String subjectid;
+    private TextView editText;
 
 
     @Override
@@ -57,19 +61,20 @@ public class SendPost2Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send_post2);
         builder = new AlertDialog.Builder(SendPost2Activity.this);
+        getData();
         upload = findViewById(R.id.sendpost2_upload);
         upload.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-               sendMessage("مدیر","دوره جدید","کاربران همیشگی معجره فکر، دوره ای جدید به برنامه اضافه شد. جهت مشاهده به قسمت دوره ها مراجعه کنید.");
+                if(!where.equals("edit"))
+                    sendMessage("مدیر","دوره جدید","کاربران همیشگی معجره فکر، دوره ای جدید به برنامه اضافه شد. جهت مشاهده به قسمت دوره ها مراجعه کنید.");
+                else
+                    SendPost2Activity.this.finish();
             }
         });
-        bundle =getIntent().getExtras();
-        array = bundle.getStringArrayList("array");
-        for(int i=0;i<array.size();i++){
-            addView(array.get(i));
-        }
+
+
 
     }
     public static void play(Activity activity, Uri uri){
@@ -114,8 +119,6 @@ public class SendPost2Activity extends AppCompatActivity {
         return displayName;
     }
     public String getRealPathFromURI(Uri uri) {
-        String a=uri.toString();
-        String b= uri.getPath();
         Cursor cursor = null;
         try {
             String[] proj = { MediaStore.Audio.Media.DATA };
@@ -144,14 +147,14 @@ public class SendPost2Activity extends AppCompatActivity {
                     builder.setTitle("اطلاع");
                     builder.setCancelable(false);
                     builder.setMessage("آیا از صحت صدای انتخاب شده اطمینان دارید؟");
-                    builder.setPositiveButton("ارسال صدا", new DialogInterface.OnClickListener() {
+                    builder.setPositiveButton("ارسال", new DialogInterface.OnClickListener() {
 
                         @Override
                         public void onClick(DialogInterface dialog, int whichbtn) {
                             AudioWife.getInstance().pause();
                             AudioWife.getInstance().release();
                             if (checknet(SendPost2Activity.this)) {
-                                new UploadFileAsync(SendPost2Activity.this).execute(getRealPathFromURI(uri),which,getFileName(uri));
+                                new UploadFileAsync(SendPost2Activity.this).execute(url,getRealPathFromURI(uri),which,getFileName(uri),where,subjectid);
                             }else {
                                 Toast.makeText(SendPost2Activity.this,"اتصال به اینترنت را بررسی کنید!",Toast.LENGTH_LONG).show();
                             }
@@ -245,5 +248,25 @@ public class SendPost2Activity extends AppCompatActivity {
         }else{
             Toast.makeText(SendPost2Activity.this,"اتصال به اینترنت را بررسی کنید!", Toast.LENGTH_LONG).show();
         }
+    }
+    private void getData(){
+        editText = findViewById(R.id.sendpost_editText1);
+        bundle =getIntent().getExtras();
+        array = bundle.getStringArrayList("array");
+        for(int i=0;i<array.size();i++){
+            addView(array.get(i));
+        }
+        where = bundle.getString("where","");
+        subjectid = bundle.getString("subjectid","");
+        if(where.equals("edit")){
+            editText.setVisibility(View.VISIBLE);
+            url = "eupload.php/sid="+subjectid;}
+        else {
+            editText.setVisibility(View.GONE);
+            url = "upload.php";
+        }
+
+
+
     }
 }

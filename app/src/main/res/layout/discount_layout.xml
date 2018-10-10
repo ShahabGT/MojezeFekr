@@ -17,11 +17,11 @@
             android:layout_width="wrap_content"
             android:layout_height="100dp"
             android:layout_marginTop="10dp"
-            android:src="@drawable/discount"/>
+            android:src="@drawable/cart"/>
         <projects.shahabgt.com.onlinelibrary.style.FontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="کد تخفیف خود را وارد کنید"
+            android:text="آیا مایل به خرید دوره انتخاب شده هستید؟"
             android:layout_marginTop="10dp"
             android:layout_marginRight="10dp"
             android:paddingLeft="10dp"
@@ -33,7 +33,7 @@
         <projects.shahabgt.com.onlinelibrary.style.FontTextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="در غیر این صورت کلید پرداخت را بزنید."
+            android:text="در این صورت کلید پرداخت را بزنید."
             android:layout_marginRight="10dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
@@ -41,6 +41,7 @@
             style="@style/Base.TextAppearance.AppCompat.Medium"
             android:gravity="center"/>
         <LinearLayout
+            android:visibility="gone"
             android:layout_width="match_parent"
             android:orientation="horizontal"
             android:gravity="center"

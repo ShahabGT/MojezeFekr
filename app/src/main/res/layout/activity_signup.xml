@@ -59,6 +59,7 @@
                     android:layout_marginBottom="5dp"
                     android:src="@drawable/signupicon"/>
                 <projects.shahabgt.com.onlinelibrary.style.FontEditText
+
                     android:layout_width="match_parent"
                     android:padding="7dp"
                     android:layout_height="wrap_content"

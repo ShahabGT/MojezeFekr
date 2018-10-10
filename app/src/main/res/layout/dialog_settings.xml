@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="10dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/curve_shap"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+    <LinearLayout
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+    <projects.shahabgt.com.onlinelibrary.style.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="انتخاب فونت"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/green"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:gravity="right" />
+
+    <com.jaredrummler.materialspinner.MaterialSpinner
+        android:id="@+id/fontspinner"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:layout_gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+</LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="انتخاب سایز"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/green"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:gravity="right" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/sizespinner"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"/>
+    <LinearLayout
+        android:layout_marginTop="10dp"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <projects.shahabgt.com.onlinelibrary.style.FontTextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="انتخاب رنگ"
+            android:layout_marginTop="10dp"
+            android:layout_marginRight="6dp"
+            android:layout_marginLeft="6dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:textColor="@color/green"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:gravity="right" />
+
+        <com.jaredrummler.materialspinner.MaterialSpinner
+            android:id="@+id/colorspinner"
+            style="@style/Base.TextAppearance.AppCompat.Medium"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+    </LinearLayout>
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_margin="10dp"
+        android:background="@color/colorAccent"/>
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:textColor="#ffffff"
+        android:id="@+id/settings_cancel"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:layout_height="wrap_content"
+        style="@style/Base.TextAppearance.AppCompat.Button"
+        android:background="@drawable/shape3"
+        android:layout_marginBottom="10dp"
+        android:text="انصراف"/>
+        <Button
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:textColor="#ffffff"
+            android:id="@+id/settings_ok"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:layout_height="wrap_content"
+            style="@style/Base.TextAppearance.AppCompat.Button"
+            android:background="@drawable/shape3"
+            android:layout_marginBottom="10dp"
+            android:text="ذخیره"/>
+
+
+    </LinearLayout>
+    <projects.shahabgt.com.onlinelibrary.style.FontTextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="با زدن کلید ذخیره برنامه بسته  شده و نیاز به اجرای مجدد دارد!"
+        android:layout_marginTop="10dp"
+        android:layout_marginRight="6dp"
+        android:layout_marginLeft="6dp"
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:textColor="@color/green"
+        style="@style/Base.TextAppearance.AppCompat.Medium"
+        android:gravity="right" />
+
+
+
+</LinearLayout>

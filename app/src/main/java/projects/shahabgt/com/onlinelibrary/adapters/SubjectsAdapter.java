@@ -18,7 +18,6 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.DefaultRetryPolicy;
 import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
@@ -30,13 +29,10 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
-import projects.shahabgt.com.onlinelibrary.MainActivity;
 import projects.shahabgt.com.onlinelibrary.R;
-import projects.shahabgt.com.onlinelibrary.SendPost2Activity;
 import projects.shahabgt.com.onlinelibrary.SendPostActivity;
 import projects.shahabgt.com.onlinelibrary.SubsetActivity;
-import projects.shahabgt.com.onlinelibrary.classes.CustomDialogClass;
-import projects.shahabgt.com.onlinelibrary.classes.DiscountClass;
+import projects.shahabgt.com.onlinelibrary.Dialogs.DiscountClass;
 import projects.shahabgt.com.onlinelibrary.classes.Mysingleton;
 import projects.shahabgt.com.onlinelibrary.models.SubjectsModel;
 
@@ -104,7 +100,7 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
         SimpleDraweeView pic;
         Context ctx;
         Activity act;
-        Button delete;
+        Button delete,edit;
 
         public SubjectsViewHolder(final View view, final Context context, final Activity activity){
             super(view);
@@ -119,10 +115,13 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
             tag= view.findViewById(R.id.subjects_items_price_tag);
             pic= view.findViewById(R.id.subjects_items_pic);
             delete= view.findViewById(R.id.subjects_items_delete);
+            edit= view.findViewById(R.id.subjects_items_edit);
             if(sp.getString("name","").equals("ADMIN")){
                 delete.setVisibility(View.VISIBLE);
+                edit.setVisibility(View.VISIBLE);
             }else {
                 delete.setVisibility(View.GONE);
+                edit.setVisibility(View.GONE);
             }
             delete.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -136,6 +135,31 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
                             Delete(id.getText().toString());
+                        }
+                    });
+                    builder.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            alertDialog.dismiss();
+                        }
+                    });
+                    alertDialog = builder.create();
+                    alertDialog.show();
+                }
+            });
+
+            edit.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    builder = new android.app.AlertDialog.Builder(activity);
+                    builder.setTitle("اطلاع");
+                    builder.setMessage("آیا مایل به ویرایش دوره مورد نظر هستید؟");
+                    builder.setPositiveButton("ویرایش", new DialogInterface.OnClickListener() {
+
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            Edit(id.getText().toString(),name.getText().toString());
                         }
                     });
                     builder.setNegativeButton("لغو", new DialogInterface.OnClickListener() {
@@ -214,6 +238,17 @@ public class SubjectsAdapter extends RecyclerView.Adapter<SubjectsAdapter.Subjec
         } else {
             Toast.makeText(ctx, "لطفا اتصال به اینترنت را بررسی کنید!", Toast.LENGTH_LONG).show();
         }
+
+    }
+
+    private static void Edit(final String id,final String name){
+        Intent intent = new Intent(activity,SendPostActivity.class);
+        intent.putExtra("where","edit");
+        intent.putExtra("subjectid",id);
+
+        intent.putExtra("name",name);
+        activity.startActivity(intent);
+        activity.finish();
 
     }
 

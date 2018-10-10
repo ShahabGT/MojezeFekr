@@ -7,6 +7,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import projects.shahabgt.com.onlinelibrary.adapters.MessagesAdapter;
 import projects.shahabgt.com.onlinelibrary.classes.DatabaseOperations;
@@ -19,7 +20,10 @@ public class MessagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_messages);
 
-        loadData(MessagesActivity.this);
+        if(loadData(MessagesActivity.this)==0){
+            Toast.makeText(MessagesActivity.this,"پیامی برای نمایش وجود ندارد!", Toast.LENGTH_LONG).show();
+            onBackPressed();
+        }
 
         back= findViewById(R.id.messages_back);
         back.setOnClickListener(new View.OnClickListener() {
@@ -29,7 +33,7 @@ public class MessagesActivity extends AppCompatActivity {
             }
         });
     }
-    public static void loadData(Activity activity){
+    public static int loadData(Activity activity){
         DatabaseOperations db = new DatabaseOperations(activity);
         RecyclerView recyclerView = activity.findViewById(R.id.messages_recylcer);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(activity);
@@ -38,5 +42,8 @@ public class MessagesActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
         adapter.notifyDataSetChanged();
         db.close();
+        return adapter.getItemCount();
+
+
     }
 }
