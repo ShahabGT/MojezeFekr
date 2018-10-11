@@ -24,6 +24,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.facebook.drawee.backends.pipeline.Fresco;
 import com.facebook.drawee.interfaces.DraweeController;
 import com.facebook.drawee.view.SimpleDraweeView;
+import com.facebook.imagepipeline.core.ImagePipeline;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -52,6 +53,10 @@ public class SubjectsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         Fresco.initialize(SubjectsActivity.this);
         setContentView(R.layout.activity_subjects);
+        ImagePipeline imagePipeline = Fresco.getImagePipeline();
+        imagePipeline.clearMemoryCaches();
+        imagePipeline.clearDiskCaches();
+        imagePipeline.clearCaches();
         back= findViewById(R.id.subjects_back);
         back.setOnClickListener(new View.OnClickListener() {
             @Override

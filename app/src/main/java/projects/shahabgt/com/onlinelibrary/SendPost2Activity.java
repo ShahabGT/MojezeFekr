@@ -250,7 +250,7 @@ public class SendPost2Activity extends AppCompatActivity {
         }
     }
     private void getData(){
-        editText = findViewById(R.id.sendpost_editText1);
+        editText = findViewById(R.id.sendpost2_editText);
         bundle =getIntent().getExtras();
         array = bundle.getStringArrayList("array");
         for(int i=0;i<array.size();i++){
